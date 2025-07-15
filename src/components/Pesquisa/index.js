@@ -8,7 +8,7 @@ const PesquisaContainer = styled.section`
     color: #fff;
     text-align: center;
     padding: 85px 0;
-    height: 270px;
+    min-height: 270px;
     width: 100%;
 `
 
@@ -51,8 +51,13 @@ function Pesquisa() {
                 placeholder="Escreva sua próxima leitura"
                 onBlur={evento => {
                     const TextoDigitado = evento.target.value;
-                    const resultadoPesquisa = livros.filter(livro => livro.nome.includes(TextoDigitado));
-                    setLivrosPesquisados(resultadoPesquisa);
+                    if (TextoDigitado != ''){
+                        const resultadoPesquisa = livros.filter(livro => livro.nome.includes(TextoDigitado));
+                        setLivrosPesquisados(resultadoPesquisa);
+                    }
+                    else {
+                         setLivrosPesquisados([]);
+                    }
                 }}
             />
             {livrosPesquisados.map(livro => (
